@@ -1,9 +1,18 @@
 import csv
 
-class StockFileData:
-    def loaddataincsv(self, filename, header, data):
+
+class FileProcessor:
+
+    def __init__(self, file):
+        self.file = file
+
+    
+    def loaddataincsv(self, header, data):
+        '''
+        loaddataincsv(header, data)
+        '''
         try:
-            with open(filename, "w") as f:
+            with open(self.file, "w") as f:
                 writer = csv.writer(f)
                 writer.writerow(header)
                 rowid = 1
@@ -14,9 +23,13 @@ class StockFileData:
                     rowid += 1
         except Exception as err:
             print(err)
-    def readdatafromcsv(self, filename):
+
+    def readdatafromcsv(self):
+        '''
+        readdatafromcsv(file)
+        '''
         try:
-            with open(filename, "r") as f:
+            with open(self.file, "r") as f:
                 for row in f:
                     print(row)
         except Exception as err:
